@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MusixServiceApplicationTests {
+public class PlayerServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {
