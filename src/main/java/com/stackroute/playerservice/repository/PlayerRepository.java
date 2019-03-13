@@ -11,9 +11,7 @@ import java.util.List;
  * Player repository to query player information
  */
 
-public interface PlayerRepository extends CrudRepository <Player, Integer> {
-    @Query(
-            value = "SELECT * FROM Player where name = ?1",
-            nativeQuery = true)
+public interface PlayerRepository extends CrudRepository<Player, Integer> {
+    @Query(value = "SELECT p FROM Player p where p.name =?1")
     List<Player> findByName(String name);
 }

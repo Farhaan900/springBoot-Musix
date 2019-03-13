@@ -116,8 +116,8 @@ public class playerController {
      * @return ResponseEntity
      */
 
-    @GetMapping("/names/{name}")
-    public ResponseEntity<List<Player>> getByname(@PathVariable String name) {
+    @GetMapping("/players-by-name/{name}")
+    public ResponseEntity<List<Player>> getPlayerByName(@PathVariable String name) {
         List<Player> players = playerService.getBYName(name);
         return new ResponseEntity<List<Player>>(players, HttpStatus.OK);
     }
