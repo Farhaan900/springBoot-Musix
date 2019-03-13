@@ -12,12 +12,8 @@ import java.util.List;
  */
 
 public interface PlayerRepository extends CrudRepository <Player, Integer> {
-
     @Query(
-            value = "SELECT * FROM MUSIX ",
+            value = "SELECT * FROM Player where name = ?1",
             nativeQuery = true)
-    Collection<Player> findAllActiveUsers();
-
-    @Query(value = "SELECT p FROM Player p where p.name =?1")
     List<Player> findByName(String name);
 }
