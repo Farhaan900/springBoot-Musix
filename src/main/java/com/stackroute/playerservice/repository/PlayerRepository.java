@@ -1,11 +1,15 @@
-package com.stackroute.userservice.repository;
+package com.stackroute.playerservice.repository;
 
-import com.stackroute.userservice.domain.Player;
+import com.stackroute.playerservice.domain.Player;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Collection;
 import java.util.List;
+
+/**
+ * Player repository to query player information
+ */
 
 public interface PlayerRepository extends CrudRepository <Player, Integer> {
 
@@ -14,8 +18,6 @@ public interface PlayerRepository extends CrudRepository <Player, Integer> {
             nativeQuery = true)
     Collection<Player> findAllActiveUsers();
 
-    @Query(
-            value = "SELECT * FROM MUSIX ",
-            nativeQuery = true)
+    @Query(value = "SELECT p FROM Player p where p.name =?1")
     List<Player> findByName(String name);
 }
