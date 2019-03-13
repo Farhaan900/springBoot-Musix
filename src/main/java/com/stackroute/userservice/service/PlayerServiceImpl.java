@@ -6,6 +6,7 @@ import com.stackroute.userservice.exceptions.PlayerNotFoundException;
 import com.stackroute.userservice.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PlayerServiceImpl implements PlayerService, ApplicationListener<ContextRefreshedEvent> {
+public class PlayerServiceImpl implements PlayerService, ApplicationListener<ContextRefreshedEvent>, CommandLineRunner {
 
-//    ,CommandLineRunner
+//
 
     private PlayerRepository userRepository;
 
@@ -84,23 +85,29 @@ public class PlayerServiceImpl implements PlayerService, ApplicationListener<Con
 
 
     public List<Player> getBYName(String name) {
-        List<Player> user_id = userRepository.findTitleByName(name);
+        List<Player> user_id = userRepository.findByName(name);
 
         return user_id;
     }
-@Value("${myName:default}")
-String ss;
+@Value("${player.1.name:default}")
+String name1;
+@Value("${player.1.score:default}")
+int score1;
 
+@Value("${player.2.name:default}")
+String name2;
+@Value("${player.2.score:default}")
+int score2;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        userRepository.save(new Player(1,ss,400));
-        userRepository.save(new Player(2,"RooGand",200));
+        userRepository.save(new Player(1,name1,score1));
+        userRepository.save(new Player(2,name2,score2));
     }
 
-//    @Override
-//    public void run(String... args) throws Exception {
-//
-//        userRepository.save(new Player(1,"farhaan",400));
-//    }
+    @Override
+    public void run(String... args) throws Exception {
+
+        userRepository.save(new Player(1,"farhaan",400));
+    }
 }

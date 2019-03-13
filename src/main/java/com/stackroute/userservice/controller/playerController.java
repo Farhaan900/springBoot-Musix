@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ *main controller class
+ */
+
 @RestController
 @RequestMapping("api/v1")
 public class playerController {
@@ -25,15 +29,10 @@ public class playerController {
 
     @PostMapping("/player")
 
-    public ResponseEntity<?> saveMusix(@RequestBody Player player){
+    public ResponseEntity<?> saveMusix(@RequestBody Player player) throws PlayerAlreadyExistsException {
 
         Player savedPlayer =null;
-        try {
             savedPlayer = playerService.saveMusix(player);
-        }
-        catch (PlayerAlreadyExistsException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.ALREADY_REPORTED);
-        }
         return new ResponseEntity<>(savedPlayer, HttpStatus.OK);
     }
 
@@ -49,15 +48,10 @@ public class playerController {
 
     @GetMapping("/player/{id}")
 
-    public ResponseEntity<?> getById(@PathVariable int id){
+    public ResponseEntity<?> getById(@PathVariable int id) throws PlayerNotFoundException {
 
         Player player =null;
-        try {
             player = playerService.getById(id);
-        }
-        catch(PlayerNotFoundException t){
-            return new ResponseEntity<>(t.getMessage(),HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<Player>(player,HttpStatus.OK);
     }
 

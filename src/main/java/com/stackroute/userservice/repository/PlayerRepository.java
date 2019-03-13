@@ -14,7 +14,8 @@ public interface PlayerRepository extends CrudRepository <Player, Integer> {
             nativeQuery = true)
     Collection<Player> findAllActiveUsers();
 
-    @Query(value = "SELECT * FROM Player  where name = ?1",
-    nativeQuery = true )
-    List<Player> findTitleByName(String name);
+    @Query(
+            value = "SELECT * FROM MUSIX ",
+            nativeQuery = true)
+    List<Player> findByName(String name);
 }
