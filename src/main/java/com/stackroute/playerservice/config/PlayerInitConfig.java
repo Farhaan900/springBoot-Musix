@@ -36,13 +36,14 @@ public class PlayerInitConfig implements ApplicationListener<ContextRefreshedEve
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        playerRepository.save(new Player(1, name1, score1));
-        playerRepository.save(new Player(2, name2, score2));
+        playerRepository.deleteAll();
+        playerRepository.save(new Player( name1, score1));
+        playerRepository.save(new Player( name2, score2));
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        playerRepository.save(new Player(1, "farhaan", 400));
+//        playerRepository.save(new Player("farhaan", 400));
     }
 }

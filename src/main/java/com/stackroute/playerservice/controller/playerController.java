@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ import java.util.List;
  */
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/v1")
 public class playerController {
 
@@ -42,7 +44,8 @@ public class playerController {
 
     @PostMapping("/player")
 
-    public ResponseEntity<?> savePlayer(@RequestBody Player player) throws PlayerAlreadyExistsException {
+    public ResponseEntity<?> savePlayer(@Valid @RequestBody Player player){
+//            throws PlayerAlreadyExistsException {
 
         Player savedPlayer = null;
         savedPlayer = playerService.savePlayer(player);
@@ -72,7 +75,7 @@ public class playerController {
      */
 
     @GetMapping("/player/{id}")
-    public ResponseEntity<?> getById(@PathVariable int id) throws PlayerNotFoundException {
+    public ResponseEntity<?> getById(@PathVariable String id) throws PlayerNotFoundException {
 
         Player player = null;
         player = playerService.getById(id);
@@ -88,7 +91,7 @@ public class playerController {
      */
 
     @DeleteMapping("/player/{id}")
-    public ResponseEntity<String> deletePlayer(@PathVariable int id) throws PlayerNotFoundException {
+    public ResponseEntity<String> deletePlayer(@PathVariable String id) throws PlayerNotFoundException {
         playerService.deleteById(id);
         return new ResponseEntity<String>("Deleted", HttpStatus.OK);
     }
@@ -102,7 +105,7 @@ public class playerController {
      */
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Player> updatePlayer(@RequestBody Player player, @PathVariable int id) throws PlayerNotFoundException {
+    public ResponseEntity<Player> updatePlayer(@Valid @RequestBody Player player, @PathVariable String id) throws PlayerNotFoundException {
 
         playerService.updateById(player, id);
 
@@ -116,9 +119,9 @@ public class playerController {
      * @return ResponseEntity
      */
 
-    @GetMapping("/players-by-name/{name}")
-    public ResponseEntity<List<Player>> getPlayerByName(@PathVariable String name) {
-        List<Player> players = playerService.getBYName(name);
-        return new ResponseEntity<List<Player>>(players, HttpStatus.OK);
-    }
+//    @GetMapping("/players-by-name/{name}")
+//    public ResponseEntity<List<Player>> getPlayerByName(@PathVariable String name) {
+//        List<Player> players = playerService.getBYName(name);
+//        return new ResponseEntity<List<Player>>(players, HttpStatus.OK);
+//    }
 }

@@ -37,11 +37,11 @@ public class PlayerServiceImpl implements PlayerService {
      * @return Player
      * @throws PlayerAlreadyExistsException
      */
-    public Player savePlayer(Player player) throws PlayerAlreadyExistsException {
+    public Player savePlayer(Player player) {
 
-        if (playerRepository.existsById(player.getId())) {
-            throw new PlayerAlreadyExistsException("Track already exists with id  : " + player.getId());
-        }
+//        if (playerRepository.existsById(player.getId())) {
+//            throw new PlayerAlreadyExistsException("Track already exists with id  : " + player.getId());
+//        }
 
         Player savedPlayer = playerRepository.save(player);
 
@@ -64,7 +64,7 @@ public class PlayerServiceImpl implements PlayerService {
      * @return Player
      * @throws PlayerNotFoundException
      */
-    public Player getById(int id) throws PlayerNotFoundException {
+    public Player getById(String id) throws PlayerNotFoundException {
 
         Optional<Player> user_id = playerRepository.findById(id);
 
@@ -82,7 +82,7 @@ public class PlayerServiceImpl implements PlayerService {
      * @param id
      * @throws PlayerNotFoundException
      */
-    public void deleteById(int id) throws PlayerNotFoundException {
+    public void deleteById(String id) throws PlayerNotFoundException {
 
         Optional<Player> user_id = playerRepository.findById(id);
         if (!user_id.isPresent())
@@ -98,7 +98,7 @@ public class PlayerServiceImpl implements PlayerService {
      * @param id
      * @throws PlayerNotFoundException
      */
-    public void updateById(Player player, int id) throws PlayerNotFoundException {
+    public void updateById(Player player, String id) throws PlayerNotFoundException {
 
         Optional<Player> userOptional = playerRepository.findById(id);
         if (!userOptional.isPresent())
@@ -114,10 +114,10 @@ public class PlayerServiceImpl implements PlayerService {
      * @param name
      * @return list of players
      */
-    public List<Player> getBYName(String name) {
-        List<Player> user_id = playerRepository.findByName(name);
-
-        return user_id;
-    }
+//    public List<Player> getBYName(String name) {
+////        List<Player> user_id = playerRepository.findByName(name);
+//        List<Player> user_id = playerRepository.findByName(name);
+//        return user_id;
+//    }
 
 }

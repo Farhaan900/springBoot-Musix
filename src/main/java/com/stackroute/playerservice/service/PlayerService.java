@@ -7,15 +7,16 @@ import com.stackroute.playerservice.exceptions.PlayerNotFoundException;
 import java.util.List;
 
 public interface PlayerService {
-    public Player savePlayer(Player player) throws PlayerAlreadyExistsException;
+    public Player savePlayer(Player player) ;
+//    throws PlayerAlreadyExistsException;
 
     public List<Player> getPlayers();
 
-    public Player getById(int id) throws PlayerNotFoundException;
+    public Player getById(String id) throws PlayerNotFoundException;
 
-    public void deleteById(int id) throws PlayerNotFoundException;
+    public void deleteById(String id) throws PlayerNotFoundException;
 
-    public void updateById(Player player, int id) throws PlayerNotFoundException;
+    public void updateById(Player player, String id) throws PlayerNotFoundException;
 
-    public List<Player> getBYName(String name);
+//    public List<Player> getBYName(String name);
 }
